@@ -13,7 +13,7 @@ from django.utils.translation import gettext as _
 from django.views import View
 
 # from .atomics import AdminMenu
-from .settings import simpel_admin_settings as admin_settings
+from .settings import bootmin_settings
 
 
 class AdminSite(BaseAdminSite):
@@ -22,18 +22,18 @@ class AdminSite(BaseAdminSite):
     enable_app_index = True
 
     # Text to put at the end of each page's <title>.
-    site_title = admin_settings.SITE_TITLE
+    site_title = bootmin_settings.SITE_TITLE
     # Text to put in each page's <h1>.
-    site_header = admin_settings.SITE_HEADER
+    site_header = bootmin_settings.SITE_HEADER
     # Text to put at the top of the admin index page.
-    index_title = admin_settings.INDEX_TITLE
+    index_title = bootmin_settings.INDEX_TITLE
 
     # Exclude app from app_list and prevent index
-    app_excludes = admin_settings.APP_INDEX_EXCLUDES
-    app_default_icons = admin_settings.DEFAULT_APP_ICONS
+    app_excludes = bootmin_settings.APP_INDEX_EXCLUDES
+    app_default_icons = bootmin_settings.DEFAULT_APP_ICONS
 
-    app_index_template = admin_settings.APP_INDEX_TEMPLATE
-    logout_template = admin_settings.LOGOUT_TEMPLATE
+    app_index_template = bootmin_settings.APP_INDEX_TEMPLATE
+    logout_template = bootmin_settings.LOGOUT_TEMPLATE
 
     def _build_app_dict(self, request, label=None):
         """

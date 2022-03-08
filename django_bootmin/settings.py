@@ -15,9 +15,9 @@ SETTINGS_DOC = "https://github.com/realnoobs/bootmin"
 
 BOOTMIN_DEFAULTS: Dict[str, Any] = {
     "APP_INDEX_EXCLUDES": [],
-    "INDEX_TITLE": os.getenv("INDEX_TITLE", "Simpel Admin"),
-    "SITE_TITLE": os.getenv("SITE_TITLE", "Simpel Admin"),
-    "SITE_HEADER": os.getenv("SITE_HEADER", "Simpel Admin"),
+    "INDEX_TITLE": os.getenv("INDEX_TITLE", "Django Bootmin"),
+    "SITE_TITLE": os.getenv("SITE_TITLE", "Django Bootmin"),
+    "SITE_HEADER": os.getenv("SITE_HEADER", "Django Bootmin"),
     "LOGOUT_TEMPLATE": "registration/logged_out.html",
     "APP_INDEX_TEMPLATE": "admin/app_index.html",
     "DEFAULT_APP_ICONS": {
