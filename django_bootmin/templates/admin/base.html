@@ -1,0 +1,28 @@
+{% extends 'admin/base.html' %}
+{% load i18n %}
+
+{% block extrastyle %}
+<style>
+  .object-buttons a {
+    border-radius: 15px;
+  }
+  .object-buttons a:link, .object-buttons a:visited {
+    display: inline-block;
+    padding: 3px 12px;
+    background: var(--object-tools-bg);
+    color: var(--object-tools-fg);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+</style>
+{% endblock extrastyle %}
+
+{% block userlinks %}
+    {% if user.is_superuser or user.has_setting_perm %}
+      {% url 'admin:settings' as settings_root %}
+      {% if settings_root %}
+        <a href="{{ settings_root }}">{% translate 'Settings' %}</a> /
+      {% endif %}
+    {% endif %}
+    {{ block.super }}
+{% endblock %}
