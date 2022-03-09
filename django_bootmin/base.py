@@ -253,9 +253,10 @@ class AdminInspectionMixin(BaseModelAdmin):
         )
 
     def change_view(self, request, object_id, form_url="", extra_context=None):
-        self.object = get_object_or_404(self.model, pk=object_id)
-        if self.inspect_enabled and not self.has_change_permission(request, self.object):
-            return redirect(self.get_inspect_url(object_id))
+        if object_id:
+            self.object = get_object_or_404(self.model, pk=object_id)
+            if self.inspect_enabled and not self.has_change_permission(request, self.object):
+                return redirect(self.get_inspect_url(object_id))
         return super().change_view(request, object_id, form_url=form_url, extra_context=extra_context)
 
     def get_urls(self):
