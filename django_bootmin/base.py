@@ -54,6 +54,9 @@ class AdminFormView(FormView):
 
 
 class BaseModelAdmin(admin.ModelAdmin):
+
+    confirmation_template = "admin/confirmation.html"
+
     def has_action_permission(self, request, action):
         opts = self.opts
         codename = get_permission_codename(action, opts)
@@ -81,17 +84,29 @@ class BaseModelAdmin(admin.ModelAdmin):
     def get_object_buttons_template(self, request, obj):
         return "admin/object_buttons.html"
 
+    @admin.display(description="")
     def object_buttons(self, obj):
         childs = self.get_object_buttons_childs(self.request, obj)
         template = self.get_object_buttons_template(self.request, obj)
         context = {"request": self.request, "childs": childs, "object": obj}
         return render_to_string(template, context)
 
-    object_buttons.short_description = ""
-
     def changelist_view(self, request, extra_context=None):
         self.request = request
         return super().changelist_view(request, extra_context)
+
+    def confirmation_view(self, request, extra_context={}):
+        context = {
+            "request": request,
+            "opts": self.opts,
+            **self.admin_site.each_context(request),
+            **extra_context,
+        }
+        return TemplateResponse(
+            request,
+            self.confirmation_template,
+            context=context,
+        )
 
 
 class AdminPrintViewMixin(BaseModelAdmin):
