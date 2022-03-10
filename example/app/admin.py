@@ -6,5 +6,5 @@ from .models import Product
 
 
 @admin.register(Product)
-class ProductAdmin(ModelAdminMixin, AdminPrintViewMixin):
-    list_display = ["name", "price"]
+class ProductAdmin(AdminPrintViewMixin, ModelAdminMixin):
+    list_display = ["name", "price", "object_buttons"]
